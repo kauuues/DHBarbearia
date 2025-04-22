@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>DH Barbearia</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+
+  <!-- Favicon -->
+  <link rel="icon" href="logo2.png" type="image/png" />
+
+  <!-- AOS Animations -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="DH Barbearia - Estilo, tradição e cuidado com seu visual. Agende já seu horário.">
+  <meta name="keywords" content="barbearia, corte de cabelo, barba, pigmentação, DH Barbearia, São Paulo, corte masculino">
+  <meta property="og:title" content="DH Barbearia">
+  <meta property="og:description" content="Estilo, tradição e cuidado com seu visual. Agende já seu horário.">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1573497019413-7c1b7db3f028">
+  <meta property="og:type" content="website">
+  <meta name="author" content="DH Barbearia">
+
+  <style>
+    :root {
+      --preto: #000;
+      --amarelo: #ffcc00;
+      --cinza: #111;
+      --claro: #fff;
+      --claro2: #f1f1f1;
+      --escuro: #333;
+      --fundo-dark: #222;
+      --texto-dark: #ccc;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background-color: var(--preto);
+      color: var(--claro);
+      scroll-behavior: smooth;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'Bebas Neue', sans-serif;
+      letter-spacing: 1px;
+    }
+
+    header {
+      background: var(--amarelo);
+      padding: 1.5rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    header h1 {
+      color: var(--preto);
+      font-size: 2rem;
+    }
+
+    .menu-toggle {
+      display: none;
+      font-size: 2rem;
+      background: none;
+      border: none;
+      color: var(--preto);
+      cursor: pointer;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+    }
+
+    nav a {
+      margin-left: 2rem;
+      color: var(--preto);
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    nav a:hover {
+      color: #444;
+    }
+
+    @media (max-width: 768px) {
+      nav {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        margin-top: 1rem;
+      }
+
+      nav.show {
+        display: flex;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      header h1 {
+        margin-bottom: 0.5rem;
+      }
+
+      nav a {
+        margin: 0.5rem 0;
+        margin-left: 0;
+      }
+    }
+
+    .hero {
+      background: url('https://images.unsplash.com/photo-1573497019413-7c1b7db3f028') center/cover no-repeat;
+      height: 90vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: -1;
+    }
+
+    .hero h2 {
+      color: var(--amarelo);
+      font-size: 3rem;
+      text-shadow: 2px 2px 6px #000;
+    }
+
+    .hero p {
+      background: rgba(0, 0, 0, 0.6);
+      padding: 1rem;
+      border-radius: 10px;
+      color: var(--claro);
+      margin-top: 1rem;
+    }
+
+    section {
+      padding: 4rem 2rem;
+      text-align: center;
+      opacity: 0;
+      transition: opacity 0.5s ease-in-out;
+    }
+
+    section.visible {
+      opacity: 1;
+    }
+
+    section h3 {
+      color: var(--amarelo);
+      font-size: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+    }
+
+    .card {
+      background-color: var(--cinza);
+      border: 2px solid var(--amarelo);
+      border-radius: 12px;
+      padding: 2rem;
+      transition: transform 0.3s ease, background 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      background-color: #1a1a1a;
+    }
+
+    .card h4 {
+      color: var(--amarelo);
+      margin-bottom: 1rem;
+    }
+
+    .card p {
+      color: #ccc;
+    }
+
+    .galeria {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+    }
+
+    .galeria img {
+      width: 100%;
+      max-width: 250px;
+      border-radius: 10px;
+      border: 2px solid var(--amarelo);
+      transition: transform 0.3s;
+    }
+
+    .galeria img:hover {
+      transform: scale(1.05);
+    }
+
+    .whatsapp-button {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #25d366;
+      color: white;
+      border-radius: 50%;
+      padding: 15px;
+      font-size: 24px;
+      box-shadow: 0 2px 10px #000;
+      z-index: 999;
+      text-decoration: none;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+      100% { transform: scale(1); }
+    }
+
+    .toggle-darkmode {
+      position: fixed;
+      top: 15px;
+      right: 15px;
+      background: var(--cinza);
+      color: var(--amarelo);
+      border: none;
+      padding: 10px;
+      border-radius: 10px;
+      cursor: pointer;
+      z-index: 999;
+    }
+
+    iframe {
+      width: 100%;
+      height: 300px;
+      border: none;
+      border-radius: 10px;
+      margin-top: 2rem;
+    }
+
+    footer {
+      background-color: var(--cinza);
+      color: #888;
+      text-align: center;
+      padding: 2rem;
+      margin-top: 4rem;
+    }
+
+    /* Dark Mode Styles */
+    body.dark {
+      background-color: var(--fundo-dark);
+      color: var(--texto-dark);
+    }
+
+    body.dark header {
+      background: var(--escuro);
+    }
+
+    body.dark .card {
+      background-color: var(--escuro);
+      border-color: var(--claro);
+    }
+
+    body.dark .card:hover {
+      background-color: var(--fundo-dark);
+    }
+
+    body.dark .whatsapp-button {
+      background: #075e54;
+    }
+
+    body.dark .toggle-darkmode {
+      background: var(--escuro);
+      color: var(--amarelo);
+    }
+  </style>
+</head>
+<body>
+
+  <button class="toggle-darkmode" onclick="toggleDarkMode()" aria-label="Ativar modo escuro" aria-pressed="false">🌙</button>
+  <a href="https://sites.appbarber.com.br/link/8306545/dhbarbearia" class="whatsapp-button" title="Agendar horário" target="_blank" aria-label="Agendar pelo WhatsApp" aria-pressed="false">📅</a>
+
+  <header>
+    <h1>DH Barbearia</h1>
+    <button class="menu-toggle" onclick="toggleMenu()" aria-label="Abrir menu">☰</button>
+    <nav id="nav">
+      <a href="#servicos">Serviços</a>
+      <a href="#galeria">Galeria</a>
+      <a href="#equipe">Equipe</a>
+      <a href="#depoimentos">Depoimentos</a>
+      <a href="#contato">Contato</a>
+    </nav>
+  </header>
+
+  <section class="hero" id="home">
+    <h2 data-aos="fade-down">Seu estilo como tem que ser!</h2>
+    <img src="logo.jpg" alt="Logo da DH Barbearia">
+  </section>
+
+  <section id="sobre">
+    <h3 data-aos="fade-left">Sobre a DH Barbearia</h3>
+    <p style="max-width: 700px; margin: 0 auto;">
+      Fundada com paixão pelo estilo e cuidado masculino, a DH Barbearia é mais que um corte: é uma experiência. 
+      Valorizamos o atendimento personalizado, a tradição e a modernidade em cada detalhe. Sinta-se em casa.
+    </p>
+  </section>
+
+  <section id="servicos">
+    <h3 data-aos="fade-right">Serviços</h3>
+    <div class="cards">
+      <div class="card" data-aos="zoom-in" data-aos-delay="100">
+        <h4>Corte Masculino</h4>
+        <p>Clássico ou moderno com precisão e estilo.</p>
+      </div>
+      <div class="card" data-aos="zoom-in" data-aos-delay="200">
+        <h4>Barba Completa</h4>
+        <p>Modelagem, hidratação e finalização profissional.</p>
+      </div>
+      <div class="card" data-aos="zoom-in" data-aos-delay="300">
+        <h4>Pigmentação</h4>
+        <p>Visual renovado com aparência natural.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="galeria">
+    <h3 data-aos="fade-up">Galeria</h3>
+    <div class="galeria">
+      <img src="corte1.jpg" alt="Corte masculino fade lateral" loading="lazy">
+      <img src="corte2.jpg" alt="Corte social com acabamento" loading="lazy">
+      <img src="barba.jpg" alt="Barba modelada com navalha" loading="lazy">
+    </div>
+  </section>
+
+  <section id="equipe">
+    <h3 data-aos="fade-left">Nossa Equipe</h3>
+    <div class="cards">
+      <div class="card" data-aos="flip-left" data-aos-delay="100">
+        <h4>Diego</h4>
+        <p>Especialista em Corte, Barba, Sobrancelha, Penteados e Freestyle.</p>
+      </div>
+      <div class="card" data-aos="flip-right" data-aos-delay="200">
+        <h4>Carlos</h4>
+        <p>Especialista em Corte, Barba, Sobrancelha, Penteados e Freestyle.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="depoimentos">
+    <h3 data-aos="fade-up">O que dizem nossos clientes</h3>
+    <div class="cards">
+      <div class="card" data-aos="fade-up" data-aos-delay="100">
+        <p>"Melhor corte da minha vida, Diego é fera!"</p>
+        <p><strong>- João M.</strong></p>
+      </div>
+      <div class="card" data-aos="fade-up" data-aos-delay="200">
+        <p>"Ambiente top e atendimento impecável!"</p>
+        <p><strong>- Lucas R.</strong></p>
+      </div>
+      <div class="card" data-aos="fade-up" data-aos-delay="300">
+        <p>"Barbeiros super atenciosos e ótimo atendimento!"</p>
+        <p><strong>- Kauê S.</strong></p>
+      </div>
+    </div>
+  </section>
+
+  <section id="contato">
+    <h3 data-aos="fade-right">Contato</h3>
+    <p style="font-size: 1.2rem; margin-bottom: 2rem;">
+      Fale com a gente pelo WhatsApp e agende seu horário:
+    </p>
+    <a href="http://wa.me/5511951189593" target="_blank" 
+       style="background-color: #25D366; color: white; padding: 1rem 2rem; font-size: 1.5rem; font-weight: bold; border-radius: 10px; text-decoration: none; display: inline-block;"
+       aria-label="Falar no WhatsApp">
+      💬 Falar no WhatsApp
+    </a>
+    <iframe src="https://maps.app.goo.gl/VaTsKFk5HYVhMxuV8" allowfullscreen loading="lazy"></iframe>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 DH Barbearia. Todos os direitos reservados. <a href="/politica-de-privacidade">Política de Privacidade</a> | <a href="/termos-de-uso">Termos de Uso</a></p>
+  </footer>
+
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init();
+
+    function toggleDarkMode() {
+      document.body.classList.toggle('dark');
+      const darkModeButton = document.querySelector('.toggle-darkmode');
+      const isDarkMode = document.body.classList.contains('dark');
+      darkModeButton.setAttribute('aria-pressed', isDarkMode);
+    }
+
+    function toggleMenu() {
+      const nav = document.getElementById("nav");
+      nav.classList.toggle("show");
+    }
+
+    // Intersection Observer to show sections when visible
+    const sections = document.querySelectorAll('section');
+    const observer = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.5 });
+
+    sections.forEach(section => {
+      observer.observe(section);
+    });
+  </script>
+</body>
+</html>
