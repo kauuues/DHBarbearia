@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>DH Barbearia</title>
+
+  <!-- Fontes Google -->
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <!-- Ícones -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <style>
+    :root {
+      --preto: #000;
+      --amarelo: #ffcc00;
+      --cinza: #1a1a1a;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: var(--preto);
+      color: white;
+      scroll-behavior: smooth;
+    }
+
+    h1, h2, h3 {
+      font-family: 'Bebas Neue', cursive;
+      color: var(--amarelo);
+    }
+
+    header {
+      background: var(--cinza);
+      padding: 1.5rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    nav a {
+      color: white;
+      margin-left: 2rem;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    nav a:hover {
+      color: var(--amarelo);
+    }
+
+    section {
+      padding: 4rem 2rem;
+      text-align: center;
+    }
+
+    .hero {
+      height: 80vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      background: url('https://images.unsplash.com/photo-1573497019413-7c1b7db3f028') center/cover no-repeat;
+      position: relative;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.6);
+      z-index: 1;
+    }
+
+    .hero h1, .hero p {
+      z-index: 2;
+      position: relative;
+    }
+
+    .hero h1 {
+      font-size: 4rem;
+      margin-bottom: 1rem;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+    }
+
+    .logo {
+      width: 80%;
+      max-width: 300px; /* Ajusta o tamanho máximo da logo */
+      margin-top: 2rem;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* Responsividade */
+    @media (max-width: 600px) {
+      .logo {
+        width: 90%; /* Ajusta o tamanho da logo em telas menores */
+      }
+    }
+
+    .card-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .card {
+      background: var(--cinza);
+      padding: 2rem;
+      border-radius: 12px;
+      width: 280px;
+      text-align: left;
+    }
+
+    /* Estilos para as imagens da galeria */
+    .galeria img {
+      width: 250px; /* Define o tamanho das imagens */
+      height: 250px; /* Garante que as imagens terão a mesma altura */
+      object-fit: cover; /* Faz com que a imagem cubra a área do contêiner sem distorcer */
+      border-radius: 8px;
+      margin: 10px;
+      border: 2px solid var(--amarelo);
+    }
+
+    .whatsapp-btn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #25D366;
+      color: white;
+      font-size: 24px;
+      padding: 15px;
+      border-radius: 50%;
+      text-decoration: none;
+      box-shadow: 0 2px 10px black;
+      z-index: 1000;
+    }
+
+    footer {
+      background: var(--cinza);
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.9rem;
+      color: #aaa;
+    }
+
+    /* Responsividade */
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      nav {
+        margin-top: 1rem;
+        text-align: left;
+      }
+
+      .hero h1 {
+        font-size: 3rem;
+      }
+
+      .hero p {
+        font-size: 1.1rem;
+      }
+
+      .card-container {
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .card {
+        width: 100%;
+        margin-bottom: 1rem;
+      }
+
+      .depoimentos-container {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .depoimento {
+        width: 100%;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+
+      .hero p {
+        font-size: 1rem;
+      }
+
+      .whatsapp-btn {
+        bottom: 15px;
+        right: 15px;
+        padding: 12px;
+      }
+    }
+
+    /* Formulário de agendamento */
+    #formAgendamento {
+      max-width: 400px;
+      margin: 2rem auto;
+      text-align: left;
+    }
+
+    #formAgendamento input, #formAgendamento select {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 1rem;
+      border-radius: 8px;
+      border: 1px solid var(--amarelo);
+      font-size: 1rem;
+    }
+
+    #formAgendamento button {
+      width: 100%;
+      padding: 10px;
+      background: var(--amarelo);
+      color: black;
+      border: none;
+      font-size: 1.2rem;
+      cursor: pointer;
+      border-radius: 8px;
+    }
+
+    #formAgendamento button:hover {
+      background: #e0b500;
+    }
+
+    /* Estilo para a seção de depoimentos */
+    .depoimentos-container {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-top: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .depoimento {
+      background: var(--cinza);
+      padding: 2rem;
+      border-radius: 12px;
+      width: 250px;
+      height: auto;
+      text-align: center;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+    }
+
+    .depoimento p {
+      font-size: 1.1rem;
+      color: #ccc;
+    }
+
+    .depoimento h3 {
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: var(--amarelo);
+      margin-top: 1rem;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h2>DH Barbearia</h2>
+    <nav>
+      <a href="#sobre">Sobre</a>
+      <a href="#servicos">Serviços</a>
+      <a href="#galeria">Galeria</a>
+      <a href="#equipe">Equipe</a>
+      <a href="#depoimentos">Depoimentos</a>
+      <a href="#contato">Contato</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h1>Seu estilo como tem que ser.</h1>
+    <p>Fundada com paixão pelo estilo e cuidado masculino, a DH Barbearia é mais que um corte: é uma experiência. Valorizamos o atendimento personalizado, a tradição e a modernidade em cada detalhe. Sinta-se em casa.</p>
+    <!-- Logo -->
+    <img src="logo.jpg" alt="Logo DH Barbearia" class="logo">
+  </section>
+
+  <!-- Seção sobre a DH Barbearia -->
+  <section id="sobre">
+    <h2>Sobre a DH Barbearia</h2>
+    <p>A DH Barbearia foi criada para proporcionar aos nossos clientes uma experiência única de cuidado e estilo. Com um ambiente descontraído e acolhedor, nossa missão é oferecer cortes modernos e tradicionais com um atendimento personalizado que vai além das expectativas. Venha conhecer nosso espaço e renovar seu visual com qualidade e profissionalismo.</p>
+  </section>
+
+  <!-- Seção O que dizem nossos clientes -->
+  <section id="depoimentos">
+    <h2>O que dizem nossos clientes</h2>
+    <div class="depoimentos-container">
+      <div class="depoimento">
+        <p>“Ambiente top, atendimento diferenciado. Recomendo demais!”</p>
+        <h3>João Silva</h3>
+      </div>
+      <div class="depoimento">
+        <p>“Melhor corte da minha vida, voltarei sempre.”</p>
+        <h3>Rafael Oliveira</h3>
+      </div>
+      <div class="depoimento">
+        <p>“Profissionais incríveis, me senti super à vontade!”</p>
+        <h3>Lucas Costa</h3>
+      </div>
+    </div>
+  </section>
+
+  <section id="servicos">
+    <h2>Serviços</h2>
+    <div class="card-container">
+      <div class="card">
+        <h3>Corte Masculino</h3>
+        <p>Moderno ou clássico, com muito estilo e técnica.</p>
+      </div>
+      <div class="card">
+        <h3>Barba</h3>
+        <p>Modelagem completa, hidratação e relaxamento.</p>
+      </div>
+      <div class="card">
+        <h3>Sombrancelha</h3>
+        <p>Detalhes que fazem a diferença no visual.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="galeria">
+    <h2>Galeria</h2>
+    <div class="galeria">
+      <img src="corte1.jpg" alt="Corte 1" />
+      <img src="corte2.jpg" alt="Corte 2" />
+      <img src="barba.jpg" alt="Barba" />
+    </div>
+  </section>
+
+  <section id="equipe">
+    <h2>Equipe</h2>
+    <div class="card-container">
+      <div class="card">
+        <h3>Diego</h3>
+        <p>Especialista em corte, barba, sobrancelha, freestyle.</p>
+      </div>
+      <div class="card">
+        <h3>Carlos</h3>
+        <p>Especialista em corte, barba, sobrancelha, freestyle.</p>
+      </div>
+      <div class="card">
+        <h3>Kauê</h3>
+        <p>Especialista em corte, barba, sobrancelha.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="contato">
+    <h2>Contato</h2>
+    <p>Nos mande uma mensagem no WhatsApp para agendar seu horário.</p>
+
+    <!-- Formulário de agendamento -->
+    <form id="formAgendamento" onsubmit="enviarAgendamento(event)">
+      <label for="nome">Nome:</label>
+      <input type="text" id="nome" required>
+
+      <label for="telefone">Telefone:</label>
+      <input type="tel" id="telefone" required>
+
+      <label for="servico">Serviço:</label>
+      <select id="servico" required>
+        <option value="">Selecione</option>
+        <option value="Corte Masculino">Pezinho</option>
+        <option value="Corte Masculino">Corte Infantil</option>
+        <option value="Corte Masculino">Corte e Barba</option>
+        <option value="Corte Masculino">Luzes</option>
+        <option value="Corte Masculino">Progressiva</option>
+        <option value="Corte Masculino">Falar com Atendente</option>
+        <option value="Corte Masculino">Corte</option>
+        <option value="Barba">Barba</option>
+        <option value="Sobrancelha">Sobrancelha</option>
+      </select>
+
+      <label for="data">Data e Hora:</label>
+      <input type="datetime-local" id="data" required>
+
+      <button type="submit">Agendar</button>
+    </form>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 DH Barbearia. Todos os direitos reservados.</p>
+  </footer>
+
+  <script>
+    function enviarAgendamento(event) {
+      event.preventDefault();
+  
+      const nome = document.getElementById("nome").value;
+      const telefone = document.getElementById("telefone").value;
+      const servico = document.getElementById("servico").value;
+      const dataHora = document.getElementById("data").value;
+  
+      if (!nome || !telefone || !servico || !dataHora) {
+        alert("Por favor, preencha todos os campos.");
+        return;
+      }
+  
+      const dataFormatada = new Date(dataHora).toLocaleString("pt-BR", {
+        dateStyle: "short",
+        timeStyle: "short",
+      });
+  
+      const mensagem = `Olá, gostaria de agendar um serviço.%0A%0A*Nome:* ${nome}%0A*Telefone:* ${telefone}%0A*Serviço:* ${servico}%0A*Data:* ${dataFormatada}`;
+      const telefoneWhatsApp = "5511951189593"; // Número da barbearia
+  
+      const url = `https://wa.me/${telefoneWhatsApp}?text=${mensagem}`;
+  
+      window.open(url, "_blank");
+    }
+  </script>
+</body>
+</html>
